@@ -1,0 +1,19 @@
+db:
+  image: postgres:9.4.4
+  ports:
+    - "5432"
+
+redis:
+  image: davidpthomas/radar-redis
+
+web:
+  build: .
+  ports:
+    - "3000:3000"
+  command: bundle exec rails server --port=3000 --binding='0.0.0.0'
+  volumes:
+    - .:/apps/radar-webapp
+  links:
+    - redis
+    - db
+
