@@ -1,0 +1,23 @@
+Project Radar - History
+
+
+Jul 15-30, 2015
+* spiked rails+resque+rally
+
+Aug 1-11, 2015
+* researched docker
+* spiked dockerizing apps
+
+Aug 12, 2015
+* dockerized vanilla rails, postgres, redis
+* dockerized vanilla datadb container/volume
+* rails webapp can talk to both databases and serve content
+* all code in github; all images on dockerhub
+* github: davidpthomas/radar-webapp, davidpthomas/radar-postgres, davidpthomas/radar-redis
+* dockerhub: davidpthomas/radar-webapp, davidpthomas/radar-postgres, davidpthomas/radar-redis
+
+Aug 13, 2015
+* integrated rescue and rescue-web (/queues)
+* rake tasks can put same jobs on a queue
+
+Aug 14, 2015

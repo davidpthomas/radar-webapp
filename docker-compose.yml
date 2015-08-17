@@ -1,7 +1,15 @@
-db:
-  image: postgres:9.4.4
+dbdata:
+  image: davidpthomas/radar-postgres:1.0.0
+  volumes:
+    - /var/lib/postgresql
+  command: /bin/true
+
+postgres:
+  image: davidpthomas/radar-postgres:1.0.0
+  volumes_from:
+    - dbdata
   ports:
-    - "5432"
+    - "5432:5432"
 
 redis:
   image: davidpthomas/radar-redis
@@ -15,5 +23,5 @@ web:
     - .:/apps/radar-webapp
   links:
     - redis
-    - db
+    - postgres
 

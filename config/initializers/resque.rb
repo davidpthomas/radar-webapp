@@ -1,0 +1,2 @@
+Resque.redis = Redis.new(:host => ENV['RADARWEBAPP_REDIS_1_PORT_6379_TCP_ADDR'], :port => ENV['RADARWEBAPP_REDIS_1_PORT_6379_TCP_PORT'])
+

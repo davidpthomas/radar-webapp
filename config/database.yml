@@ -17,13 +17,13 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  database: postgres
+  template: template0
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
-  username: postgres
-  password:
-  host: db
+  username: radar_webapp
+  password: radar_webapp
+  host: postgres
 
 development:
   <<: *default
