@@ -47,5 +47,11 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # turn off asset pipeline logs in development to minimize noise in logs
+  gem 'quiet_assets'
+
+  # format logs to a single line
+  gem 'lograge'
 end
 

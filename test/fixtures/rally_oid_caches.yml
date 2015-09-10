@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  oid: 1
+  name: MyString
+  type: 
+  job_id: 
+
+two:
+  oid: 1
+  name: MyString
+  type: 
+  job_id: 
