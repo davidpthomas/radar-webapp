@@ -21,11 +21,25 @@ class OnlineStoreBuilder < AbstractBuilder
         api_team = name ('API Team')
       
     workspace({name: ws_name})
-#    project({name: online_store, workspace: ws_name})
-#    project({name: consumer_site, parent: online_store, workspace: ws_name })
-#    project({name: fulfillment_team, parent: consumer_site, workspace: ws_name })
-#    project({name: payment_team, parent: consumer_site, workspace: ws_name })
-#    project({name: shopping_team, parent: consumer_site, workspace: ws_name })
+    project({name: online_store, workspace: ws_name})
+    project({name: consumer_site, parent: online_store, workspace: ws_name })
+    project({name: fulfillment_team, parent: consumer_site, workspace: ws_name })
+    project({name: payment_team, parent: consumer_site, workspace: ws_name })
+    project({name: shopping_team, parent: consumer_site, workspace: ws_name })
+
+    release_dates = {
+      "Q1 2015": {releasestartdate: Date.new(2015,01,01), releasedate: Date.new(2015,3,31)},
+      "Q2 2015": {releasestartdate: Date.new(2015,04,01), releasedate: Date.new(2015,6,30)},
+      "Q3 2015": {releasestartdate: Date.new(2015,07,01), releasedate: Date.new(2015,9,30)},
+      "Q4 2015": {releasestartdate: Date.new(2015,10,01), releasedate: Date.new(2015,12,31)},
+    }
+
+    @artifact_cache[:projects].each do |project|
+    Rails.logger.debug "GOT PROJECT: #{project.inspect}"
+      release_dates.each_pair do |name, attrs|
+        release({name: name, project: project[:name], releasedate: attrs[:releasedate], releasestartdate: attrs[:releasestartdate], state: 'Active'})
+      end
+    end
 
   end
 

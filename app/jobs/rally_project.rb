@@ -1,40 +1,33 @@
 require 'rally_api'
+require 'rally_cache_manager'
 
 class RallyProject < RallyWorker
 
-    @queue = :rallyproject
+  @queue = :rallyproject
 
   def self.work(params)
 
-    name = params['name']
-    parent = params['parent']
-    workspace = params['workspace']
+    job_id = params['job_id']
+    workspace_name = params['workspace']
 
-    Rails.logger.info "[#{@queue}]: Creating Project #{name}"
-    begin
-      results = @rally.find(RallyAPI::RallyQuery.new({:type => "subscription", :fetch => "Name,Workspaces"}))
+    workspace_cache = RallyCacheManager.find_by_name(job_id, workspace_name)
+    workspace_ref = workspace_cache['ref']
 
-      idx = results[0].Workspaces.find_index {|w| w.Name == workspace}
-
-      workspace_ref = results[0].Workspaces[idx]._ref
-      ws = {"_ref" => workspace_ref}
-      results = @rally.find(RallyAPI::RallyQuery.new({:type => "project", :workspace => ws, :query_string => "( Name = \"#{parent}\" )"}))
-      parent_ref = results.first
+    if params.has_key?('parent')
+      project_cache = RallyCacheManager.find_by_name(job_id, params['parent'])
+      parent_ref = project_cache['ref']
       Rails.logger.info "Found Parent Project: #{parent} #{parent_ref}"
-
-    rescue Exception => e
-      Rails.logger.info "Error: #{e.message}"
     end
 
-    obj = {}
-    obj[:name] = name
-    obj[:state] = 'Open'
-    obj[:parent] = parent_ref
-    obj[:workspace] = workspace_ref
+    params['state'] = 'Open'
+    params['parent'] = parent_ref
+    params['workspace'] = workspace_ref
+
+    Rails.logger.info "[#{@queue}]: Creating Project #{name}"
 
     begin
-      new_obj = @rally.create("project", obj)
-      Rails.logger.info " >> created project #{name} [#{parent}] [#{workspace}]"
+      project = create("project", params)
+      Rails.logger.info " >> created project #{project.Name} [#{project.parent}]"
     rescue Exception => e
       Rails.logger.info "Error: #{e.message}"
     end

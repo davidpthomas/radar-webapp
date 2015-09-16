@@ -3,15 +3,28 @@ class AbstractBuilder
   def initialize
     job = Job.create(name: self.class.name)
     @job_id = job.id
+
+    # cache artifacts for quick lookup
+    @artifact_cache = {workspaces: [], projects: [], releases: []}
   end
 
   def workspace(attrs)
     now(RallyWorkspace, attrs)
+    @artifact_cache[:workspaces].push(attrs)
   end
 
   def project(attrs)
     now(RallyProject, attrs)
+    @artifact_cache[:projects].push(attrs)
   end
+
+  def release(attrs)
+    now(RallyRelease, attrs)
+    @artifact_cache[:releases].push(attrs)
+  end
+
+  # TODO
+  # - use method_missing to dynamically convert 'project' to now(RallyProject)
 
   private
 

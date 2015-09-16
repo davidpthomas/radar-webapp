@@ -15,21 +15,18 @@ class RallyWorker
   protected
 
   def self.create(type, attrs)
-    type_s = type.to_s
     begin
       # create object
-      obj = @rally.create(type_s, attrs)
-Rails.logger.info "HERE1"
+      obj = @rally.create(type, attrs)
       # cache oid results
-      RallyCacheManager.cache(attrs['job_id'], type_s, obj.name, obj.ObjectID)
-Rails.logger.info "HERE2"
+      RallyCacheManager.cache(attrs['job_id'], type, obj.Name, obj.ObjectID, obj.ref)
 
-      Rails.logger.info " >> created '#{type_s}' with attrs #{attrs.inspect}"
+      Rails.logger.info " >> created '#{type}' with attrs #{obj.Name}"
     rescue Exception => e
-Rails.logger.info "HERE3 #{e.inspect}"
-      Rails.logger.error "ERROR: Creating #{type} with args #{args.inspect}"
+      Rails.logger.error "Unable to create '#{type}' with attrs #{attrs.inspect}"
+      Rails.logger.error e.message
     end
-
+    obj
   end
 
   private
@@ -44,8 +41,6 @@ Rails.logger.info "HERE3 #{e.inspect}"
     config = {:base_url => "https://demo-emea.rallydev.com/slm"}
     config[:username]   = "paul@acme.com"
     config[:password]   = "RallyON!"
-#    config[:workspace]  = "Integrations"
-#    config[:project]    = "Shopping Team"
     config[:headers]    = headers
 
     @rally = RallyAPI::RallyRestJson.new(config)
