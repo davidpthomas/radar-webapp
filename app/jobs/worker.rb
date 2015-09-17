@@ -38,7 +38,7 @@ class Worker
     headers.vendor = "Rally Software"
     headers.version = "1.0"
 
-    config = {:base_url => "https://demo-west.rallydev.com/slm"}
+    config = {:base_url => "https://ec2-54-187-192-99.us-west-2.compute.amazonaws.com/slm"}
     config[:username]   = "paul@acme.com"
     config[:password]   = "RallyON!"
     config[:headers]    = headers

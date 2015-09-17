@@ -19,7 +19,6 @@ class Release < Worker
 
     begin
       release = create("release", params)
-      Rails.logger.info " >> created release #{release.Name}"
     rescue Exception => e
       Rails.logger.info "Error: #{e.message}"
     end
