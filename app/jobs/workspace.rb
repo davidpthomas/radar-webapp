@@ -1,6 +1,6 @@
 require 'rally_api'
 
-class RallyWorkspace < RallyWorker
+class Workspace < Worker
 
   @queue = :rallyworkspace
 

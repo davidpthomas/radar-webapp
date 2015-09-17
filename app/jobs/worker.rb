@@ -1,7 +1,7 @@
 require 'rally_api'
 require 'rally_cache_manager'
 
-class RallyWorker
+class Worker
 
   @queue = :rallyworker
 
@@ -38,14 +38,14 @@ class RallyWorker
     headers.vendor = "Rally Software"
     headers.version = "1.0"
 
-    config = {:base_url => "https://demo-emea.rallydev.com/slm"}
+    config = {:base_url => "https://demo-west.rallydev.com/slm"}
     config[:username]   = "paul@acme.com"
     config[:password]   = "RallyON!"
     config[:headers]    = headers
 
     @rally = RallyAPI::RallyRestJson.new(config)
 
-    Rails.logger.info " > Connected to Rally: URL:#{config[:base_url]} - WS:#{config[:workspace]} - PRJ:#{config[:project]}"
+    Rails.logger.info " > Connected to Rally: URL:#{config[:base_url]}"
 
   end
 

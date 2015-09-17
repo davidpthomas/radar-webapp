@@ -1,6 +1,6 @@
 require 'rally_api'
 
-class RallyFeature < RallyWorker
+class Feature < Worker
 
     @queue = :rallyproject
 

@@ -34,7 +34,7 @@ class OnlineStoreBuilder < AbstractBuilder
       "Q4 2015": {releasestartdate: Date.new(2015,10,01), releasedate: Date.new(2015,12,31)},
     }
 
-    @artifact_cache[:projects].each do |project|
+    @artifact_cache[:project].each do |project|
     Rails.logger.debug "GOT PROJECT: #{project.inspect}"
       release_dates.each_pair do |name, attrs|
         release({name: name, project: project[:name], releasedate: attrs[:releasedate], releasestartdate: attrs[:releasestartdate], state: 'Active'})

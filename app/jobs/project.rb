@@ -1,7 +1,7 @@
 require 'rally_api'
 require 'rally_cache_manager'
 
-class RallyProject < RallyWorker
+class Project < Worker
 
   @queue = :rallyproject
 

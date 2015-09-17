@@ -1,6 +1,6 @@
 require 'rally_api'
 
-class RallyStoryUpdate < RallyWorker
+class StoryUpdate < Worker
 
     @queue = :rallyproject
 
