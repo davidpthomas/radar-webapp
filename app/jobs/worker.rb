@@ -34,15 +34,16 @@ class Worker
   def self.connect
 
     headers = RallyAPI::CustomHttpHeader.new()
-    headers.name = "Data Gen"
+    headers.name = "Demo Data Gen"
     headers.vendor = "Rally Software"
     headers.version = "1.0"
 
-    config = {:base_url => "https://ec2-54-187-192-99.us-west-2.compute.amazonaws.com/slm"}
-    config[:username]   = "paul@acme.com"
-    config[:password]   = "RallyON!"
-    config[:headers]    = headers
-
+    config = {}
+    config[:base_url] = Rails.configuration.rally.connect.base_url
+    config[:username] = Rails.configuration.rally.connect.username
+    config[:password] = Rails.configuration.rally.connect.password
+    config[:headers]  = headers
+    
     @rally = RallyAPI::RallyRestJson.new(config)
 
     Rails.logger.info " > Connected to Rally: URL:#{config[:base_url]}"

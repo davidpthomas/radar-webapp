@@ -1,6 +1,13 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Rally connection info
+  config.rally = ActiveSupport::OrderedOptions.new
+  config.rally.connect = ActiveSupport::OrderedOptions.new
+  config.rally.connect.base_url = "https://ec2-54-187-192-99.us-west-2.compute.amazonaws.com/slm"
+  config.rally.connect.username = "paul@acme.com"
+  config.rally.connect.password = "RallyON!"
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

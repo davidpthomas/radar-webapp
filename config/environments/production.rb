@@ -1,6 +1,14 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Rally connection info
+  config.rally = ActiveSupport::OrderedOptions.new
+  config.rally.connect = ActiveSupport::OrderedOptions.new
+  config.rally.connect.base_url = "https://rally1.rallydev.com/slm"
+  config.rally.connect.username = "TBD"
+  config.rally.connect.password = "TBD"
+
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
