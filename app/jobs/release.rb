@@ -3,8 +3,6 @@ require 'rally_cache_manager'
 
 class Release < Worker
 
-  @queue = :rallyproject
-
   def self.work(params)
 
     job_id = params['job_id']
@@ -15,7 +13,7 @@ class Release < Worker
 
     params['project'] = project_ref
 
-    Rails.logger.info "[#{@queue}]: Creating Release #{params['name']}"
+    Rails.logger.info "Creating Release #{params['name']}"
 
     begin
       release = create("release", params)

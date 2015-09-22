@@ -2,8 +2,6 @@ require 'rally_api'
 
 class StoryUpdate < Worker
 
-    @queue = :rallyproject
-
   def self.work(params)
 
     name = params['name']
@@ -11,7 +9,7 @@ class StoryUpdate < Worker
     schedule_state = params['schedule_state']
     workspace = params['workspace']
 
-    Rails.logger.info "[#{@queue}]: Updating Story #{name} - #{schedule_state}"
+    Rails.logger.info "Updating Story #{name} - #{schedule_state}"
     begin
       results = @rally.find(RallyAPI::RallyQuery.new({:type => "subscription", :fetch => "Name,Workspaces"}))
 

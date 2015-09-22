@@ -33,8 +33,14 @@ class AbstractBuilder
 
     attrs.merge!(job_id: @job_id)
 
-    Resque.enqueue(klass, attrs)
-    Rails.logger.debug("Queuing [now]: #{klass.to_s} #{attrs.inspect}")
+    #Resque.enqueue(klass, attrs)
+    enqueue(@job_id, klass, attrs)
+  end
+
+  def enqueue(job_id, klass, attrs)
+    queue_name = "workspace #{job_id}"
+    Rails.logger.debug("Enqueue [#{queue_name}]: #{klass.to_s} #{attrs.inspect}")
+    Resque::Job.create(queue_name, klass, attrs)
   end
 end
 

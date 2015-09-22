@@ -1,0 +1,2 @@
+
+* ensure unique workspace #'s in rally; should we store a pref or setting with last job built in case data is corrupt and we can guarantee to start with latest known workspace # ?
