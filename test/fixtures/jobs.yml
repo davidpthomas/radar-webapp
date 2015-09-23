@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  type: 
+retail:
+  name: Online Store Builder
 
-two:
-  type: 
+financial:
+  name: Financial Services Builder
+
+medical:
+  name: Medical Device Builder

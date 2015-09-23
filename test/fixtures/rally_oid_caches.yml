@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  oid: 1
-  name: MyString
-  type: 
-  job_id: 
+workspace:
+  oid: 123456
+  name: Workspace 111
+  artifact_type: workspace
+  job: retail
+  ref: https://some.domain.com/slm/webservice/v2.0/workspace/123456
 
-two:
-  oid: 1
-  name: MyString
-  type: 
-  job_id: 
+project:
+  oid: 123457
+  name: Project 222
+  artifact_type: project
+  job: retail
+  ref: https://some.domain.com/slm/webservice/v2.0/project/123457

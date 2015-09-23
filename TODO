@@ -1,2 +1,4 @@
 
 * ensure unique workspace #'s in rally; should we store a pref or setting with last job built in case data is corrupt and we can guarantee to start with latest known workspace # ?
+
+* add unique constraint in postgres on job:name; this will prevent creating a new job if the db sequence gets out of whack

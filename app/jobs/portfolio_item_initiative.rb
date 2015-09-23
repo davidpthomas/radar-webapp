@@ -1,18 +1,16 @@
 require 'rally_api'
 require 'rally_cache_manager'
 
-class PortfolioItemFeature < Worker
+class PortfolioItemInitiative < Worker
 
   def self.work(params)
 
-    #workspace_name = params['workspace']
     project_name = params['project']
 
     project = RallyCacheManager.find_by_name(@job_id, project_name)
     project_ref = project['ref']
 
     preliminary_estimate = RallyEnumManager.find_by_name(@job_id, "preliminaryestimate", "L")
-    Rails.logger.info "BAR***** #{preliminary_estimate.inspect}"
     preliminary_estimate_ref = preliminary_estimate['ref']
 
     if params.has_key?('parent')
@@ -23,8 +21,8 @@ class PortfolioItemFeature < Worker
     params['parent'] = parent_ref
     params['project'] = project_ref
     params['preliminaryestimate'] = preliminary_estimate_ref
-Rails.logger.info "CREATING FEATURE: #{params.inspect}"
-    feature = create("portfolioitem/feature", params)
+Rails.logger.info "CREATING INITITIVE: #{params.inspect}"
+    feature = create("portfolioitem/initiative", params)
 
   end
 

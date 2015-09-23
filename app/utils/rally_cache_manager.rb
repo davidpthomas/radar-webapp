@@ -17,4 +17,11 @@ class RallyCacheManager
     cache = RallyOidCache.find_by(query)
     cache
   end
+
+  def self.find_workspace_by_job(job_id)
+    query = {job: job_id, artifact_type: 'workspace'}
+    cache = RallyOidCache.find_by(query)
+    cache
+  end
+
 end
