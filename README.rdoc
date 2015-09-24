@@ -6,5 +6,5 @@ Launch a new workspace   (currently only supports one; will break this out by wo
 $ rake radar:build_workspace
 
 Monitor progress
-[http: //<host>:3000/queues](http://<host>:3000/queues)
+[foo](http://<host>:3000/queues)
 
