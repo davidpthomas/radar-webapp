@@ -3,6 +3,7 @@
 Webapp and task framework for project Radar.  This is the entry point for initiating and monitoring workspace builds.
 
 Launch a new workspace   (currently only supports one; will break this out by workspace 'type' in the future)
+
 $ rake radar:build_workspace
 
 Monitor progress
